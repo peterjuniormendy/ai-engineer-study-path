@@ -1,0 +1,3 @@
+-- Week 3 · Tuesday
+-- Task: Copy your SQLBolt lesson 4–7 answers here.
+-- Write your solution below, run it, then commit and push.

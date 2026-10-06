@@ -1,0 +1,3 @@
+-- Week 8 · Friday
+-- Task: Run EXPLAIN ANALYZE on a filter query before and after adding an index. Paste both outputs and compare.
+-- Write your solution below, run it, then commit and push.

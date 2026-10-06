@@ -1,0 +1,3 @@
+-- Week 4 · Tuesday
+-- Task: Write the CREATE TABLE statement for properties by hand.
+-- Write your solution below, run it, then commit and push.

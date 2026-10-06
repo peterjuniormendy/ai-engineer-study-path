@@ -1,0 +1,3 @@
+-- Week 9 · Tuesday
+-- Task: Write the SQL for "all properties favourited by user 3".
+-- Write your solution below, run it, then commit and push.

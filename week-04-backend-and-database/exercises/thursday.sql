@@ -1,0 +1,3 @@
+-- Week 4 · Thursday
+-- Task: Install PostgreSQL locally, create a database, run 3 queries in psql. Paste the queries and output.
+-- Write your solution below, run it, then commit and push.

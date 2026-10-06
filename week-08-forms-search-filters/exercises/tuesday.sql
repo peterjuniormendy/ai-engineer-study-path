@@ -1,0 +1,3 @@
+-- Week 8 · Tuesday
+-- Task: Write both SQL queries for page 3 of properties sorted by price.
+-- Write your solution below, run it, then commit and push.
