@@ -33,8 +33,11 @@ const averagePrice =
 console.log(`£${averagePrice.toLocaleString("en-GB")}`);
 
 // Use sort to sort the prices in ascending order. Then sort them in descending order. Log both results.
-const sortedPricesAsc = [...prices].sort((a, b) => a - b);
+const sortedPricesAsc = [100, 25, 3].sort((a, b) => a - b);
 console.log(sortedPricesAsc);
 
-const sortedPricesDesc = [...prices].sort((a, b) => b - a);
+const sortedPricesDesc = [100, 25, 3].sort((a, b) => b - a);
 console.log(sortedPricesDesc);
+
+const sortWithOutCompareFn = [100, 25, 3].sort();
+console.log(sortWithOutCompareFn);

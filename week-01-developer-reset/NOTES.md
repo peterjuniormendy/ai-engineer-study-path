@@ -102,6 +102,8 @@ console.log(!(a || b)); // false
 
 ```
 
+NOTE: [100, 25, 3].sort() without the comparator returns the original array with no changes.
+
 ## Teach-back (Wednesday)
 
 _Explain this week's main concept in your own words, as if training a new starter._
