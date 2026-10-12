@@ -102,7 +102,7 @@ console.log(!(a || b)); // false
 
 ```
 
-NOTE: [100, 25, 3].sort() without the comparator returns the original array with no changes.
+NOTE: [100, 25, 3].sort() without the comparator turns the array inputs to string and sort them using the string comparation rules .
 
 ## Teach-back (Wednesday)
 
