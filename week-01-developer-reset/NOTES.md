@@ -1,6 +1,6 @@
 # Week 1 notes
 
-/\*
+```
 console.log(5 > 4); // true
 console.log("apple" > "pineapple"); //false
 console.log("2" > "12"); // true
@@ -80,6 +80,8 @@ console.log(width ?? 200); // 200
 console.log((height ?? 100) _ (width ?? 50)); // 5000
 console.log(height ?? 100 _ width ?? 50); // 0 because of operator precedence, it evaluates as height ?? (100 \* width) ?? 50, which results in null ?? 0 ?? 50, giving 0.
 
+```
+
 NOTE
 The nullish coalescing operator ?? provides a short way to choose the first “defined” value from a list.
 
@@ -91,13 +93,14 @@ The operator ?? has a very low precedence, only a bit higher than ? and =, so co
 
 It’s forbidden to use it with || or && without explicit parentheses.
 
+```
 const a = true,
 b = false;
 console.log(!a && !b); // false
 console.log(!(a && b)); // true
 console.log(!(a || b)); // false
 
-\*/
+```
 
 ## Teach-back (Wednesday)
 
