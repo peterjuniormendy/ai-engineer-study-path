@@ -132,6 +132,8 @@ Quotes change how far it looks:
 Without quotes, git add _.js: your terminal expands the _ before Git runs, so it only matches files in the folder you're in.
 With quotes, git add '_.js': Git expands the pattern itself, so it also matches .js files inside subfolders, such as all your week-xx/exercises/_.js files from the repo root.
 
+2. What is the difference between `git push -u origin main` and `git push origin main`?
+
 ## What was hard
 
 -
