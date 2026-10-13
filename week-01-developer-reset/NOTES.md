@@ -133,6 +133,20 @@ Without quotes, git add _.js: your terminal expands the _ before Git runs, so it
 With quotes, git add '_.js': Git expands the pattern itself, so it also matches .js files inside subfolders, such as all your week-xx/exercises/_.js files from the repo root.
 
 2. What is the difference between `git push -u origin main` and `git push origin main`?
+   The difference is the -u flag, short for --set-upstream. It makes Git remember where this branch pushes to.
+
+git push origin main sends your local main branch to the remote called origin, once. Git doesn't remember the pairing, so next time you have to type origin main again.
+
+git push -u origin main sends it the same way, and also saves a link between your local main and origin/main. That link is the "upstream" or "tracking" branch. After that:
+
+You type Git knows to use
+git push origin main
+git pull origin main
+git status Compares you with origin/main, e.g. "Your branch is ahead of 'origin/main' by 2 commits"
+
+So you use -u once per branch, usually on its first push, and plain git push after that. That's why your setup steps had git push -u origin main and why plain git push has worked since.
+
+See it yourself: run git branch -vv in your repo. The [origin/main] next to main is the link -u created
 
 ## What was hard
 
