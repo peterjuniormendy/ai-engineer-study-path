@@ -110,27 +110,18 @@ _Explain this week's main concept in your own words, as if training a new starte
 
 ## Questions for review
 
--What does _.c stands for in this git command ``` git add _.c ```?
-\*.c is a wildcard pattern, sometimes called a glob. It means "every file whose name ends in .c".
-
-- matches any run of characters, including none at all.
-  .c is the literal ending. .c is the file extension for programs written in C, which is why Pro Git uses it as its example.
-
-So git add \*.c stages every .c file at once instead of naming each one. In a folder containing:
-
-main.c utils.c notes.txt README.md
-
-it stages main.c and utils.c and ignores the rest.
+-What does \_.c stands for in this git command `git add *.c`?
+It means add "every file whose name ends in .c" to the stageing area.
 
 For your own repo, the same idea would be:
 
-git add _.js # stages every .js file in the current folder
-git add _.md # stages every Markdown file in the current folder
+`git add *.js` # stages every .js file in the current folder
+`git add *.md` # stages every Markdown file in the current folder
 
 Quotes change how far it looks:
 
-Without quotes, git add _.js: your terminal expands the _ before Git runs, so it only matches files in the folder you're in.
-With quotes, git add '_.js': Git expands the pattern itself, so it also matches .js files inside subfolders, such as all your week-xx/exercises/_.js files from the repo root.
+Without quotes, `git add *.js`: your terminal expands the _ before Git runs, so it only matches files in the folder you're in.
+With quotes, ```git add '_.js'```: Git expands the pattern itself, so it also matches .js files inside subfolders, such as all your week-xx/exercises/\_.js files from the repo root.
 
 2. What is the difference between `git push -u origin main` and `git push origin main`?
    The difference is the -u flag, short for --set-upstream. It makes Git remember where this branch pushes to.
