@@ -19,7 +19,7 @@ Agreed data rules
 - For price calculations, include only properties with a valid, non-negative numeric price.
 - For bedroom calculations, include only properties with a valid bedroom count.
 
-Function isValidateProperty(property)
+FUNCTION isValidProperty(property)
 IF property is empty
 RETURN false
 ELSE IF property has no ID OR property ID is NOT valid
@@ -30,3 +30,55 @@ ELSE IF property bathroom < 0 OR prperty bathroom is NOT a number
 RETURN false
 ELSE
 RETURN true
+
+FUNCTION getProperties()
+FOR all properties
+FILTER IF isValidProperty(property)
+
+FUNCTION getPropertyById(id)
+IF property AND isValidProperty()
+RETURN property
+ELSE
+RETURN [] //Property not found
+
+FUNCTION getTotalProperties()
+getProperties()
+RETURN properties LENGTH
+
+FUNCTION getAveragePrice()
+getProperties()
+FOR all properties
+FILTER property IF property HAS price AND isNumber property price AND property price >= 0
+RETURN SUM of filtered properties price / LENGTH of filtered properties
+
+FUNCTION getCheapestProperty()
+getProperties()
+FOR all properties
+FILTER property IF property HAS price AND isNumber property price AND property price >= 0
+FOR all filtred properties
+RETURN property with MINIMUM price
+
+FUNCTION getMostExpensiveProperty()
+getProperties()
+FOR all properties
+FILTER property IF property HAS price AND isNumber property price AND property price >= 0
+FOR all filtred properties
+RETURN property with MAXIMUM price
+
+FUNCTION getAverageBedrooms()
+
+FUNCTION filterByBathrooms(minBathrooms)
+
+FUNCTION filterByLocation(location)
+
+FUNCTION filterByPrice(price)
+
+FUNCTION filterByBedrooms(minBedrooms)
+
+FUNCTION countByPropertyType()
+
+FUNCTION searchProperties(value)
+
+FUNCTION mostCommonLocation()
+
+FUNCTION highestPricedByLocation()
