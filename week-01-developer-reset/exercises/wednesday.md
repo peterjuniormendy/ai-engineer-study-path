@@ -54,31 +54,65 @@ RETURN SUM of filtered properties price / LENGTH of filtered properties
 FUNCTION getCheapestProperty()
 getProperties()
 FOR all properties
-FILTER property IF property HAS price AND isNumber property price AND property price >= 0
-FOR all filtred properties
-RETURN property with MINIMUM price
+FILTER property IF property HAS price AND isNumber property price AND property price >= 0 AND property price is MINIMUM
+RETURN property
 
 FUNCTION getMostExpensiveProperty()
 getProperties()
 FOR all properties
-FILTER property IF property HAS price AND isNumber property price AND property price >= 0
-FOR all filtred properties
-RETURN property with MAXIMUM price
+FILTER property IF property HAS price AND isNumber property price AND property price >= 0 AND property price is MAXIMUM
+RETURN property
 
 FUNCTION getAverageBedrooms()
+getProperties()
+FOR all properties
+FILTER property IF property HAS bedroom AND bedroom >= 0
+RETURN SUM filtered properties bedroom / LENGTH of filtered properties
 
-FUNCTION filterByBathrooms(minBathrooms)
+FUNCTION filterByBathrooms(numOfBathrooms)
+getProperties()
+FOR all properties
+FILTER property IF property HAS bathroom AND bathroom > 0 AND bathroom <= numOfBathrooms
+RETURN filered properties
 
 FUNCTION filterByLocation(location)
+getProperties()
+FOR all properties
+FILTER property IF property HAS location AND property location == location
+RETURN filered properties
 
 FUNCTION filterByPrice(price)
+getProperties()
+FOR all properties
+FILTER property IF property HAS price AND isNumber property price AND property price >= 0 AND property price <= price
+RETURN filtered properties
 
-FUNCTION filterByBedrooms(minBedrooms)
+FUNCTION filterByBedrooms(numOfBedrooms)
+getProperties()
+FOR all properties
+FILTER property IF property HAS bedroom AND bedroom >= 0 AND bedroom <= numOfBedrooms
+RETURN filtered properties
 
 FUNCTION countByPropertyType()
+getProperties()
+FOR all properties
+FILTER property IF property HAS propertyType
+RETURN LENGHT of filtered properties
 
 FUNCTION searchProperties(value)
+getProperties()
+FOR all properties
+FILTER property IF property HAS name AND property HAS propertyType AND property HAS loction AND property name, propertyType, location == value
+RETURN filtered properties
 
 FUNCTION mostCommonLocation()
+getProperties()
+FOR all properties
+FILTER property IF property HAS location
+FOR all filtered properties with MAXIMUM location
+RETURN location
 
-FUNCTION highestPricedByLocation()
+FUNCTION highestPricedByLocation(location)
+filterByLocation(location)
+FOR all filtered properties
+return property with maximum price
