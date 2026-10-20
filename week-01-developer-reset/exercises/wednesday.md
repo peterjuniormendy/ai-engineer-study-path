@@ -1,23 +1,12 @@
 Agreed data rules
 
-- A property with a missing or non-numeric price remains valid, but must be excluded from price-dependent calculations.
-- A missing or empty title is allowed; display it as No name.
-- A missing or empty property type is allowed; display it as No type.
-- Compare and count property types in lowercase.
-- When displaying a property type, capitalise the first letter and lowercase the rest (for example, studio becomes Studio).
-- Zero bedrooms is allowed.
-- Negative bedrooms are invalid.
-- A provided bedroom count must be a valid number.
-- Missing bathroom count is allowed; treat it as unknown and exclude it from bathroom calculations.
-- Zero bathrooms is allowed in the dataset but should be flagged for review because it may indicate incomplete data or an unusual property.
-- Negative bathroom counts are invalid.
-- A provided bathroom count must be numeric. Decimal values such as 1.5 are allowed to represent a full bathroom plus a half-bathroom.
-- Invalid bathroom data should not automatically invalidate the whole property: preserve the property where possible, mark the bathroom value as invalid/unknown, and exclude it from bathroom-related calculations. Report data-quality issues clearly.
-- A property must have a valid ID.
-- Do not silently drop invalid records. Report how many records were skipped and, where useful, why.
-- Unless a function says otherwise, work with valid properties only.
+- A property most have a valid ID.
 - For price calculations, include only properties with a valid, non-negative numeric price.
 - For bedroom calculations, include only properties with a valid bedroom count.
+- Negative bedrooms are invalid.
+- A provided bedroom count must be a valid number.
+- Compare and count property types in lowercase.
+- Missing bathroom count is allowed; treat it as unknown and exclude it from bathroom calculations.
 
 FUNCTION isValidProperty(property)
 IF property is empty
@@ -25,8 +14,6 @@ RETURN false
 ELSE IF property has no ID OR property ID is NOT valid
 RETURN false
 ELSE IF property bedroom < 0 OR property bedroom is NOT a number
-RETURN false
-ELSE IF property bathroom < 0 OR prperty bathroom is NOT a number
 RETURN false
 ELSE
 RETURN true
@@ -36,79 +23,86 @@ FOR all properties
 FILTER IF isValidProperty(property)
 
 FUNCTION getPropertyById(id)
-IF property AND isValidProperty()
+validProperties = getProperties()
+FOR all validProperties FIND property
+IF property ID == id
 RETURN property
-ELSE
-RETURN [] //Property not found
 
 FUNCTION getTotalProperties()
-getProperties()
-RETURN properties LENGTH
+validProperties = getProperties()
+RETURN validProperties LENGTH
 
 FUNCTION getAveragePrice()
-getProperties()
-FOR all properties
-FILTER property IF property HAS price AND isNumber property price AND property price >= 0
+validProperties = getProperties()
+FOR all validProperties
+FILTER validProperty IF property HAS price AND isNumber property price AND property price >= 0
+IF filtered property is empty
+RETURN false
+ELSE
 RETURN SUM of filtered properties price / LENGTH of filtered properties
 
 FUNCTION getCheapestProperty()
-getProperties()
-FOR all properties
-FILTER property IF property HAS price AND isNumber property price AND property price >= 0 AND property price is MINIMUM
+validProperties = getProperties()
+FOR all validProperties
+FILTER validProperties IF property HAS price AND isNumber property price AND property price >= 0 AND property price is MINIMUM
 RETURN property
 
 FUNCTION getMostExpensiveProperty()
-getProperties()
-FOR all properties
-FILTER property IF property HAS price AND isNumber property price AND property price >= 0 AND property price is MAXIMUM
+validProperties = getProperties()
+FOR all validProperties
+FILTER validProperties IF property HAS price AND isNumber property price AND property price >= 0 AND property price is MAXIMUM
 RETURN property
 
 FUNCTION getAverageBedrooms()
-getProperties()
-FOR all properties
-FILTER property IF property HAS bedroom AND bedroom >= 0
+validProperties = getProperties()
+FOR all validProperties
+FILTER validProperties IF property HAS bedroom AND bedroom >= 0
+IF filtered property is empty
+RETURN false
+ELSE
 RETURN SUM filtered properties bedroom / LENGTH of filtered properties
 
 FUNCTION filterByBathrooms(numOfBathrooms)
-getProperties()
-FOR all properties
-FILTER property IF property HAS bathroom AND bathroom > 0 AND bathroom <= numOfBathrooms
+validProperties = getProperties()
+FOR all validProperties
+FILTER validProperties IF property HAS bathroom AND bathroom > 0 AND bathroom <= numOfBathrooms
 RETURN filered properties
 
 FUNCTION filterByLocation(location)
-getProperties()
-FOR all properties
-FILTER property IF property HAS location AND property location == location
+validProperties = getProperties()
+FOR all validProperties
+FILTER validProperties IF property HAS location AND property location == location
 RETURN filered properties
 
 FUNCTION filterByPrice(price)
-getProperties()
-FOR all properties
-FILTER property IF property HAS price AND isNumber property price AND property price >= 0 AND property price <= price
+validProperties = getProperties()
+FOR all validProperties
+FILTER validProperties IF property HAS price AND isNumber property price AND property price >= 0 AND property price <= price
 RETURN filtered properties
 
 FUNCTION filterByBedrooms(numOfBedrooms)
-getProperties()
-FOR all properties
-FILTER property IF property HAS bedroom AND bedroom >= 0 AND bedroom <= numOfBedrooms
+validProperties = getProperties()
+FOR all validProperties
+FILTER validProperties IF property HAS bedroom AND bedroom >= 0 AND bedroom >= numOfBedrooms
 RETURN filtered properties
 
-FUNCTION countByPropertyType()
-getProperties()
-FOR all properties
-FILTER property IF property HAS propertyType
+FUNCTION countByPropertyType(type)
+validProperties = getProperties()
+FOR all validProperties
+FILTER validProperties IF property HAS propertyType AND propertyType toLowerCase == type toLowerCase
 RETURN LENGHT of filtered properties
 
-FUNCTION searchProperties(value)
-getProperties()
-FOR all properties
-FILTER property IF property HAS name AND property HAS propertyType AND property HAS loction AND property name, propertyType, location == value
+FUNCTION searchProperties(criteria)
+check IF criteria is an object
+validProperties = getProperties()
+FOR all validProperties
+FILTER validProperties IF property name == criteria name || property type == criteria type || property location == criteria location || property price == criteria price || property area == criteria area || property bathroom == criteria bathroom || property bedroom == criteria bedroom
 RETURN filtered properties
 
 FUNCTION mostCommonLocation()
-getProperties()
-FOR all properties
-FILTER property IF property HAS location
+validProperties = getProperties()
+FOR all validProperties
+FILTER validProperties IF property HAS location
 FOR all filtered properties with MAXIMUM location
 RETURN location
 
