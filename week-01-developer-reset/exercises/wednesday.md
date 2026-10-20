@@ -71,7 +71,7 @@ RETURN filered properties
 FUNCTION filterByLocation(location)
 validProperties = getProperties()
 FOR all validProperties
-FILTER validProperties IF property HAS location AND property location == location
+FILTER validProperties IF property HAS location AND property location toLoweCase == location toLowerCase
 RETURN filered properties
 
 FUNCTION filterByPrice(price)
@@ -86,25 +86,25 @@ FOR all validProperties
 FILTER validProperties IF property HAS bedroom AND bedroom >= 0 AND bedroom >= numOfBedrooms
 RETURN filtered properties
 
-FUNCTION countByPropertyType(type)
+FUNCTION countByPropertyType()
 validProperties = getProperties()
 FOR all validProperties
-FILTER validProperties IF property HAS propertyType AND propertyType toLowerCase == type toLowerCase
+FILTER validProperties IF property HAS propertyType
 RETURN LENGHT of filtered properties
 
 FUNCTION searchProperties(criteria)
 check IF criteria is an object
 validProperties = getProperties()
 FOR all validProperties
-FILTER validProperties IF property name == criteria name || property type == criteria type || property location == criteria location || property price == criteria price || property area == criteria area || property bathroom == criteria bathroom || property bedroom == criteria bedroom
+FILTER validProperties IF ANY of property values MATCHES ANY of criteria values
 RETURN filtered properties
 
-FUNCTION mostCommonLocation()
+<!-- FUNCTION mostCommonLocation()
 validProperties = getProperties()
 FOR all validProperties
 FILTER validProperties IF property HAS location
 FOR all filtered properties with MAXIMUM location
-RETURN location
+RETURN location -->
 
 FUNCTION highestPricedByLocation(location)
 filterByLocation(location)
