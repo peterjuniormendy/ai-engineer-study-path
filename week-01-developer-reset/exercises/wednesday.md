@@ -89,13 +89,16 @@ RETURN filtered properties
 FUNCTION countByPropertyType()
 validProperties = getProperties()
 counts = {}
-FOR all validProperties
-FOR EACH property IN validProperties
-type = (property.type || 'no type') toLowerCase
-IF type IN counts keys
-RETURN counts.type += 1
-ELSE
-RETURN counts.type = 1
+
+FOR EACH property in validProperties
+type = (property.type || 'no type').toLowerCase()
+
+    IF type is already a key in counts
+        counts[type] += 1
+    ELSE
+        counts[type] = 1
+
+RETURN counts
 
 FUNCTION searchProperties(criteria)
 check IF criteria is an object
@@ -107,7 +110,7 @@ IF criteria.location was given
 AND property.location (lowercase) != criteria.location (lowercase)
 matches = false
 IF criteria.maxPrice was given
-AND is Not Number property.price AND property.price > criteria.maxPrice
+AND (is Not Number property.price OR property.price > criteria.maxPrice)
 matches = false
 IF criteria.minBedrooms was given
 AND property.bedrooms < criteria.minBedrooms
