@@ -88,16 +88,33 @@ RETURN filtered properties
 
 FUNCTION countByPropertyType()
 validProperties = getProperties()
+counts = {}
 FOR all validProperties
-FILTER validProperties IF property HAS propertyType
-RETURN LENGHT of filtered properties
+FOR EACH property IN validProperties
+type = (property.type || 'no type') toLowerCase
+IF type IN counts keys
+RETURN counts.type += 1
+ELSE
+RETURN counts.type = 1
 
 FUNCTION searchProperties(criteria)
 check IF criteria is an object
 validProperties = getProperties()
-FOR all validProperties
-FILTER validProperties IF ANY of property values MATCHES ANY of criteria values
-RETURN filtered properties
+results = []
+FOR EACH property in validProperties
+matches = true
+IF criteria.location was given
+AND property.location (lowercase) != criteria.location (lowercase)
+matches = false
+IF criteria.maxPrice was given
+AND is Not Number property.price AND property.price > criteria.maxPrice
+matches = false
+IF criteria.minBedrooms was given
+AND property.bedrooms < criteria.minBedrooms
+matches = false
+IF matches is still true
+add property to results
+RETURN results
 
 <!-- FUNCTION mostCommonLocation()
 validProperties = getProperties()
