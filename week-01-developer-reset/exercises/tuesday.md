@@ -10,10 +10,13 @@ I learned about several git commands. These are some of the commands and the one
 `git remote`: Used to show or add the source of a git repo to establish a connection to it.
 `git status`: This is used show the current status of the repo, weather there's been some changes to the files or not.
 `git add`: This command it used to add untracked or modified files to the staging area. Example `git add `. for all files or `git add fileName` for a specific file.
-`git commit`: This command is used to label or mark the changes made with a message. example `git commit -m 'Setup the project folder'`
+`git commit`: This command is used to label/mark the staged files with a message and save those snapshots. example `git commit -m 'Setup the project folder'`
 `git push`: Used to send newly track or modified changes to files live into github.
 `git log`: This command is used to show commit logs or history
 `git rm --cached`: used to remove a file from Git tracking while keeping it safely on local hard drive
 `git branch -vv`: used to list your local branches with extra detailed information, specifically showing their upstream tracking branches and their sync status
 `git pull`: Used to fetch from and integrate with another repository or a local branch
 `git diff`: Shows the changes between commits, commit and working tree etc.
+
+why does Git have a staging area at all, instead of committing every changed file automatically?
+git staging area is crusial for reviewing or making further changes to files before committing.
