@@ -8,16 +8,18 @@ const words = [
   "Excellence",
   "education",
   "computer",
-  "circle",
+  "",
 ];
 
 const groupedWords = (words) => {
   return words.reduce((grouped, word) => {
-    let key = word.charAt(0).toLowerCase();
-    if (key in grouped) {
-      grouped[key].push(word);
-    } else {
-      grouped[key] = [word];
+    const key = word.charAt(0).toLowerCase();
+    if (key !== "") {
+      if (key in grouped) {
+        grouped[key].push(word);
+      } else {
+        grouped[key] = [word];
+      }
     }
     return grouped;
   }, {});
