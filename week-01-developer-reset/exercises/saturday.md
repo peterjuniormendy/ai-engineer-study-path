@@ -17,8 +17,8 @@
 5. How did you handle missing or invalid prices?
    I did this by creating a seperate function that checks for properties with valid prices by following the rules for vaild price.
 6. What would happen with 100,000 properties?
-   Everything will work as normal and since every function is reusable there will be no writing of new features for every property. But the speed of execution will increase on less i optimise by
-   Repeated work: getProperties() and getPropertiesWithValidPrice since they are called in multiple place, i will called them once at the top and store their results in variables and reuse them rather than doing expensive api calls all the time they are needed.
+   Everything will work as normal and since every function is reusable there will be no writing of new features for every property. But the speed of execution will decrease on less i optimise by
+   Repeated work: getProperties() and getPropertiesWithValidPrice since they are called in multiple place, i will called them once at the top and store their results in variables and reuse them rather than repeatedly looping over all 100,000 properties all the time they are needed.
    Output: example filterByBedrooms(2) instead of printing all the results at once i will add a limit and increase if only nessasary(pagination).
 7. What part did you find difficult?
    Making sure the rules are tightly implemented example in the countByPropertyType: I had to normalise the case to avoid duplicates. AND vs OR, 0 being falsy, and the regression where a fix broke the normal case.
