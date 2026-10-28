@@ -11,12 +11,21 @@ property is annotated to the Property type literal which already have pre-define
 
 Question 2: which fields of Property should be optional according to your own rules.
 name,
-location,
 price,
-bedrooms,
 bathrooms,
 type,
 area
+
+| Field     | Required or optional? | Why                                              |
+| --------- | --------------------- | ------------------------------------------------ |
+| id        | required              | my rule: every property must have a valid ID     |
+| name      | not required          | name can by missing in my rule                   |
+| location  | required              | filterByLocation and searchProperty calls it     |
+| price     | not required          | price can be missing in my rule                  |
+| bedrooms  | required              | my rule: every property must have valid bedrooms |
+| bathrooms | not required          | bathrooms can be missing in my rule              |
+| type      | not required          | type can be missing in my rule                   |
+| area      | not required          | area can be missing in my rule                   |
 
 ## Questions for review
 
