@@ -16,16 +16,16 @@ bathrooms,
 type,
 area
 
-| Field     | Required or optional? | Why                                              |
-| --------- | --------------------- | ------------------------------------------------ |
-| id        | required              | my rule: every property must have a valid ID     |
-| name      | not required          | name can by missing in my rule                   |
-| location  | required              | filterByLocation and searchProperty calls it     |
-| price     | not required          | price can be missing in my rule                  |
-| bedrooms  | required              | my rule: every property must have valid bedrooms |
-| bathrooms | not required          | bathrooms can be missing in my rule              |
-| type      | not required          | type can be missing in my rule                   |
-| area      | not required          | area can be missing in my rule                   |
+| Field     | Required or optional? | Why                                                |
+| --------- | --------------------- | -------------------------------------------------- |
+| id        | required              | my rule: every property must have a valid ID       |
+| name      | not required          | name can by missing in my rule                     |
+| location  | required              | filterByLocation and searchProperty calls it       |
+| price     | not required          | price can be missing in my rule but must be number |
+| bedrooms  | required              | my rule: every property must have valid bedrooms   |
+| bathrooms | not required          | bathrooms can be missing in my rule                |
+| type      | not required          | type can be missing in my rule                     |
+| area      | not required          | area can be missing in my rule                     |
 
 ## Questions for review
 
