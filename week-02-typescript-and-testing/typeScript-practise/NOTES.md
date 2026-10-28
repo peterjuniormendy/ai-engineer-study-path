@@ -37,3 +37,21 @@ tuple
 # Tuples
 
 # Enums
+
+# Functions
+
+# Objects
+
+## Advance
+
+# Type aliases
+
+# Union Types
+
+# Intersections
+
+# Literal Types
+
+# Nullable
+
+# Optional Chaining
