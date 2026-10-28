@@ -1,2 +1,58 @@
-console.log("hello world");
-let age: number = 10;
+// number type
+// let age: number = 10;
+// console.log("age: ", age);
+
+// any
+
+// let obj: any = {
+//   x: 0,
+//   foo: function () {
+//     console.log("hello foo");
+//   },
+// };
+// obj(); // throws runtime error
+// console.log(obj);
+
+// console.log("obj", obj);
+// console.log("x", obj.x);
+// console.log("foo");
+// obj.foo();
+
+// function
+// parameter annotation
+function greet(name: string) {
+  console.log("Hello, " + name.toUpperCase() + "!!");
+}
+
+greet("world");
+
+// greet(42); // Throws a complilation error because argument should be of type string
+
+// Return Type Annotations
+function getFavoriteNumber(): number {
+  return 26;
+}
+console.log(getFavoriteNumber());
+
+// NOTE: when the return value is change to any type typeScript will throw a complilation error. example changing 26 to 'hello'
+
+// Functions Which Return Promises
+async function getFavoriteNumberPromise(): Promise<number> {
+  return 26;
+}
+
+console.log("promise:", getFavoriteNumberPromise());
+
+// Anonymous Functions
+
+const names = ["Alice", "Bob", "Eve"];
+
+// Contextual typing for function - parameter s inferred to have type string
+names.forEach(function (s) {
+  console.log("function declaration: ", s.toUpperCase());
+});
+
+// Contextual typing also applies to arrow functions
+names.forEach((s) => {
+  console.log("arrow function: ", s.toUpperCase());
+});
