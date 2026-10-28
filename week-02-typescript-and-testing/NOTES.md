@@ -19,7 +19,7 @@ area
 | Field     | Required or optional? | Why                                                |
 | --------- | --------------------- | -------------------------------------------------- |
 | id        | required              | my rule: every property must have a valid ID       |
-| name      | not required          | name can by missing in my rule                     |
+| name      | not required          | name can be missing in my rule                     |
 | location  | required              | filterByLocation and searchProperty calls it       |
 | price     | not required          | price can be missing in my rule but must be number |
 | bedrooms  | required              | my rule: every property must have valid bedrooms   |
