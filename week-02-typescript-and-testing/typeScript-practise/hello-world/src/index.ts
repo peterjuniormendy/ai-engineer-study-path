@@ -56,3 +56,59 @@ names.forEach(function (s) {
 names.forEach((s) => {
   console.log("arrow function: ", s.toUpperCase());
 });
+
+// Object types
+
+// The parameter's type annotation is an object type
+function printCoord(pt: { x: number; y: number }) {
+  console.log("The coordinate's x value is " + pt.x);
+  console.log("The coordinate's y value is " + pt.y);
+}
+console.log(printCoord({ x: 3, y: 7 }));
+
+// Optional Properties
+
+function printName(obj: { first: string; last?: string }) {
+  if (obj.first && obj.last) return obj.first + " " + obj.last;
+  else return obj.first;
+}
+// Both OK
+console.log(printName({ first: "Bob" }));
+console.log(printName({ first: "Alice", last: "Alisson" }));
+
+type Property = {
+  id: number;
+  name: string;
+  location: string;
+  price: number;
+  bedrooms: number;
+  bathrooms: number;
+  type: string;
+  area: number;
+};
+
+const property: Property = {
+  id: 1,
+  name: "sunset apartments",
+  location: "leeds",
+  price: 200000,
+  bedrooms: 3,
+  bathrooms: 2,
+  type: "bungalo",
+  area: 901,
+};
+
+console.log("property: ", property);
+
+const myProperty = {
+  id: 2,
+  name: "summer house",
+  location: "manchester",
+  price: 300000,
+  bedrooms: 3,
+  bathrooms: 3,
+  type: "house",
+  area: 304,
+};
+
+console.log("myProperty: ", myProperty);

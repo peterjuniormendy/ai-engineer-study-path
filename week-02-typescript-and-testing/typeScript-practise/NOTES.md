@@ -103,6 +103,12 @@ This process is called contextual typing because the context that the function o
 
 # Objects
 
+Object Types
+Apart from primitives, the most common sort of type you’ll encounter is an object type. This refers to any JavaScript value with properties, which is almost all of them! To define an object type, we simply list its properties and their types.
+
+Optional Properties
+Object types can also specify that some or all of their properties are optional. To do this, add a ? after the property name:
+
 ## Advance
 
 # Type aliases
