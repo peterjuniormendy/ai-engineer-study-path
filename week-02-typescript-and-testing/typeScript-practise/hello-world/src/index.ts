@@ -114,3 +114,64 @@ const myProperty = {
 console.log("myProperty: ", myProperty);
 
 // Union Types
+
+// A function that can operate on strings or numbers:
+function printId(id: number | string) {
+  console.log("Your ID is: " + id);
+}
+
+printId(101);
+printId("202");
+// printId({ myID: 22342 }); // Complilation Error: Argument of type '{ myID: number; }' is not assignable to parameter of type 'string | number'.
+
+// The separator of the union members is allowed before the first element, so you could also write this:
+
+function printTextOrNumberOrBool(
+  textOrNumberOrBool: string | number | boolean,
+) {
+  console.log(textOrNumberOrBool);
+}
+
+printTextOrNumberOrBool("TypeScript");
+
+// NOTE: if you have the union string | number, you can’t use methods that are only available on string
+// function printID(id: string | number) {
+//   console.log(id.toUpperCase()); // Error: if you have the union string | number, you can’t use methods that are only available on string:
+// }
+
+function printId2(id: string | number) {
+  if (typeof id === "string") {
+    console.log(id.toUpperCase());
+  } else {
+    console.log(id);
+  }
+}
+
+printId2(200); // 200
+printId2("200"); // 200 as a string
+printId2("user01"); // USER01
+
+// Another example is to use a function like Array.isArray:
+
+function welcomeCustomers(x: string[] | string) {
+  if (Array.isArray(x)) {
+    console.log("Welcome ", x.join(" and "));
+  } else {
+    console.log("welcome lone customer ", x);
+  }
+}
+
+welcomeCustomers(["Alice", "Bob", "John"]);
+welcomeCustomers("Mark");
+
+// Sometimes you’ll have a union where all the members have something in common. For example, both arrays and strings have a slice method. If every member in a union has a property in common, you can use that property without narrowing
+
+// Return type is inferred as number[] | string
+function getFirstThree(x: number[] | string) {
+  return x.slice(0, 3);
+}
+
+console.log(getFirstThree([1, 2, 3, 4, 5, 6]));
+console.log(getFirstThree("TypeScript"));
+
+// NOTE: It might be confusing that a union of types appears to have the intersection of those types’ properties. This is not an accident - the name union comes from type theory. The union number | string is composed by taking the union of the values from each type. Notice that given two sets with corresponding facts about each set, only the intersection of those facts applies to the union of the sets themselves. For example, if we had a room of tall people wearing hats, and another room of Spanish speakers wearing hats, after combining those rooms, the only thing we know about every person is that they must be wearing a hat.
