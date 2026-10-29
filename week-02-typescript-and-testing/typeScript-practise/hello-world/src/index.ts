@@ -228,13 +228,14 @@ function printCoord2(pt: Point) {
 
 printCoord2({ x: 100, y: 127 });
 
-function multipler(num: number | undefined) {
+function square(num: number | undefined) {
   if (typeof num === "undefined") {
-    return "Can't perform a mathematical operation on undefined";
+    return null;
   } else {
     return num * num;
   }
 }
 
-console.log(multipler(undefined));
-console.log(multipler(2));
+console.log(square(undefined));
+console.log(square(2));
+console.log(square(0));
