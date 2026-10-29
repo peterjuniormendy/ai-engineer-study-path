@@ -111,6 +111,117 @@ Object types can also specify that some or all of their properties are optional.
 
 # Type aliases
 
+Type Aliases
+We’ve been using object types and union types by writing them directly in type annotations. This is convenient, but it’s common to want to use the same type more than once and refer to it by a single name.
+
+A type alias is exactly that - a name for any type. The syntax for a type alias is:
+
+type Point = {
+x: number;
+y: number;
+};
+
+// Exactly the same as the earlier example
+function printCoord(pt: Point) {
+console.log("The coordinate's x value is " + pt.x);
+console.log("The coordinate's y value is " + pt.y);
+}
+
+printCoord({ x: 100, y: 100 });
+
+You can actually use a type alias to give a name to any type at all, not just an object type. For example, a type alias can name a union type:
+
+type ID = number | string;
+
+# Interfaces
+
+An interface declaration is another way to name an object type:
+
+```
+interface Point {
+  x: number;
+  y: number;
+}
+
+function printCoord(pt: Point) {
+  console.log("The coordinate's x value is " + pt.x);
+  console.log("The coordinate's y value is " + pt.y);
+}
+
+printCoord({ x: 100, y: 100 });
+```
+
+Just like when we used a type alias above, the example works just as if we had used an anonymous object type. TypeScript is only concerned with the structure of the value we passed to printCoord - it only cares that it has the expected properties. Being concerned only with the structure and capabilities of types is why we call TypeScript a structurally typed type system.
+
+Differences Between Type Aliases and Interfaces
+Type aliases and interfaces are very similar, and in many cases you can choose between them freely. Almost all features of an interface are available in type, the key distinction is that a type cannot be re-opened to add new properties vs an interface which is always extendable.
+
+Interface Type
+Extending an interface
+
+interface Animal {
+name: string;
+}
+
+interface Bear extends Animal {
+honey: boolean;
+}
+
+const bear = getBear();
+bear.name;
+bear.honey;
+
+Extending a type via intersections
+
+type Animal = {
+name: string;
+}
+
+type Bear = Animal & {
+honey: boolean;
+}
+
+const bear = getBear();
+bear.name;
+bear.honey;
+
+Adding new fields to an existing interface
+
+interface Window {
+title: string;
+}
+
+interface Window {
+ts: TypeScriptAPI;
+}
+
+const src = 'const a = "Hello World"';
+window.ts.transpileModule(src, {});
+
+A type cannot be changed after being created
+
+type Window = {
+title: string;
+}
+
+type Window = {
+ts: TypeScriptAPI;
+}
+
+// Error: Duplicate identifier 'Window'.
+
+Prior to TypeScript version 4.2, type alias names may appear in error messages, sometimes in place of the equivalent anonymous type (which may or may not be desirable). Interfaces will always be named in error messages.
+
+Type aliases may not participate in declaration merging, but interfaces can.
+
+Interfaces may only be used to declare the shapes of objects, not rename primitives.
+
+Interface names will always appear in their original form in error messages, but only when they are used by name.
+
+Using interfaces with extends can often be more performant for the compiler than type aliases with intersections
+
+For the most part, you can choose based on personal preference, and TypeScript will tell you if it needs something to be the other kind of declaration. If you would like a heuristic, use interface until you need to use features from type.
+
 # Union Types
 
 TypeScript’s type system allows you to build new types out of existing ones using a large variety of operators. Now that we know how to write a few types, it’s time to start combining them in interesting ways.

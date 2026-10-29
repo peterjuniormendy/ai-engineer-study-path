@@ -175,3 +175,55 @@ console.log(getFirstThree([1, 2, 3, 4, 5, 6]));
 console.log(getFirstThree("TypeScript"));
 
 // NOTE: It might be confusing that a union of types appears to have the intersection of those types’ properties. This is not an accident - the name union comes from type theory. The union number | string is composed by taking the union of the values from each type. Notice that given two sets with corresponding facts about each set, only the intersection of those facts applies to the union of the sets themselves. For example, if we had a room of tall people wearing hats, and another room of Spanish speakers wearing hats, after combining those rooms, the only thing we know about every person is that they must be wearing a hat.
+
+// Type aliases
+type Point = {
+  x: number;
+  y: number;
+};
+
+// Exactly the same as the earlier example
+function printCoordWithTypeAlias(pt: Point) {
+  console.log("The coordinate's x value is " + pt.x);
+  console.log("The coordinate's y value is " + pt.y);
+}
+
+printCoordWithTypeAlias({ x: 23, y: 18 });
+
+// NOTE: Note that aliases are only aliases - you cannot use type aliases to create different/distinct “versions” of the same type. When you use the alias, it’s exactly as if you had written the aliased type. In other words, this code might look illegal, but is OK according to TypeScript because both types are aliases for the same type
+
+type UserInputSanitizedString = string;
+
+function sanitize(str: string) {
+  return str.toUpperCase();
+}
+
+function getInput(input: string) {
+  return input;
+}
+
+function sanitizeInput(str: string): UserInputSanitizedString {
+  return sanitize(str);
+}
+
+// Create a sanitized input
+let userInput = sanitizeInput(getInput("alises of the same type"));
+console.log(userInput);
+
+// Can still be re-assigned with a string though
+userInput = "new input";
+console.log("second user input ", userInput); // userInput was reassign but with the same type. The type can't be different.
+
+// Interfaces
+
+interface Point2 {
+  x: number;
+  y: number;
+}
+
+function printCoord2(pt: Point) {
+  console.log("The coordinate's x value is " + pt.x);
+  console.log("The coordinate's y value is " + pt.y);
+}
+
+printCoord2({ x: 100, y: 127 });
