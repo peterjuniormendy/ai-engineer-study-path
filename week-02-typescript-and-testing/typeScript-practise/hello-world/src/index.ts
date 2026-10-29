@@ -41,7 +41,7 @@ async function getFavoriteNumberPromise(): Promise<number> {
   return 26;
 }
 
-console.log("promise:", getFavoriteNumberPromise());
+console.log("promise:", getFavoriteNumberPromise()); // Promise 26
 
 // Anonymous Functions
 
@@ -112,3 +112,5 @@ const myProperty = {
 };
 
 console.log("myProperty: ", myProperty);
+
+// Union Types

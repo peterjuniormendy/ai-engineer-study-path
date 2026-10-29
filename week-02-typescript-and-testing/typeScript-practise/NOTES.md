@@ -1,6 +1,6 @@
 ## Introduction to TypeScript
 
-TypeScript is a programming language developed by microsoft to address the shortcomings of JavaScript. It is JavaScript with type checking.+
+TypeScript is a programming language developed by microsoft to address the shortcomings of JavaScript. It is JavaScript with type checking.
 
 # Benefits of TypeScript
 
@@ -11,7 +11,7 @@ TypeScript is a programming language developed by microsoft to address the short
 
 # Static typing
 
-This is process of declearing variable type at compile time or when coding.
+This is a process of declearing variable type at compile time or when coding.
 
 # Built-in Types
 
@@ -51,7 +51,6 @@ To specify the type of an array like [1, 2, 3], you can use the syntax number[];
 
 # Functions
 
-Functions
 Functions are the primary means of passing data around in JavaScript. TypeScript allows you to specify the types of both the input and output values of functions.
 
 NOTE: In most cases, though, this isn’t needed. Wherever possible, TypeScript tries to automatically infer the types in your code. For example, the type of a variable is inferred based on the type of its initializer:
@@ -80,7 +79,7 @@ Here’s an example:
 
 const names = ["Alice", "Bob", "Eve"];
 
-// Contextual typing for function - parameter s inferred to have type string
+// Contextual typing for function - parameters inferred to have type string
 
 ```
 names.forEach(function (s) {
@@ -96,8 +95,7 @@ names.forEach((s) => {
 });
 ```
 
-Try
-Even though the parameter s didn’t have a type annotation, TypeScript used the types of the forEach function, along with the inferred type of the array, to determine the type s will have.
+Even though the parameter "s" didn’t have a type annotation, TypeScript used the types of the forEach function, along with the inferred type of the array, to determine the type "s" will have.
 
 This process is called contextual typing because the context that the function occurred within informs what type it should have.
 
