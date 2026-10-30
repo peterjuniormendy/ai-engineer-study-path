@@ -240,3 +240,7 @@ function square(num: number | undefined) {
 console.log(square(undefined));
 console.log(square(2));
 console.log(square(0));
+
+// Type assertion
+let greeting = "hello world" as string;
+console.log(greeting);
