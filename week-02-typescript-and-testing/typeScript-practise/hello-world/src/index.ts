@@ -213,6 +213,7 @@ console.log(userInput);
 // Can still be re-assigned with a string though
 userInput = "new input";
 console.log("second user input ", userInput); // userInput was reassign but with the same type. The type can't be different.
+// userInput = 2334 // Error: Type number is not asignable to type string
 
 // Interfaces
 
