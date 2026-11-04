@@ -49,6 +49,9 @@ To specify the type of an array like [1, 2, 3], you can use the syntax number[];
 
 # Enums
 
+Enums
+Enums are a feature added to JavaScript by TypeScript which allows for describing a value which could be one of a set of possible named constants. Unlike most TypeScript features, this is not a type-level addition to JavaScript but something added to the language and runtime. Because of this, it’s a feature which you should know exists, but maybe hold off on using unless you are sure.
+
 # Functions
 
 Functions are the primary means of passing data around in JavaScript. TypeScript allows you to specify the types of both the input and output values of functions.
