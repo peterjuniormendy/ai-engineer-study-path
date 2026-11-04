@@ -297,3 +297,25 @@ configure("auto");
 // configure("automatic"); // Argument of type '"automatic"' is not assignable to parameter of type 'Options | "auto"'.
 
 // There’s one more kind of literal type: boolean literals. There are only two boolean literal types, and as you might guess, they are the types true and false. The type boolean itself is actually just an alias for the union true | false.
+
+// null and undefined
+
+function doSomething(x: string | null) {
+  if (x === null) {
+    console.log("Please pass in a string");
+  } else {
+    console.log("Hello, " + x.toUpperCase());
+  }
+}
+doSomething(null); // Please pass in a string
+doSomething("world"); // Hello, WORLD
+
+// Non-null Assertion Operator (Postfix !)
+function liveDangerously(x?: number | null) {
+  // No error
+  console.log(x!.toFixed());
+}
+
+liveDangerously(10); // 10
+// liveDangerously(null); // runtime error: Cannot read properties of null (reading 'toFixed')
+// liveDangerously(); // runtime error: Cannot read properties of undefined (reading 'toFixed')
