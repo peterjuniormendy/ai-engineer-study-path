@@ -6,7 +6,7 @@ Valid calculable price: Properties with valid normal prices should return the ex
 
 Missing price: Properties with missing price are not included in average price calculation because they will increase the count of the total properties. Example [{200},{undefined},{100},{100}] should return 133.33 instead of 100
 
-Price should be a number: Properties with a non numeric price will result to an undesired outcome from the calculation. Example [{200},{'test'},{100},{100}] should result to 133.33 instead of syntax error
+Price should be a number: Properties with a non numeric price will result to an undesired outcome from the calculation. Example [{200},{'test'},{100},{100}] should result to 133.33 instead of NaN.
 
 Non-negative numeric price: Properties with negative numeric price will alter the final results of the calculation. Example [{200},{-200},{100},{100}] should return 133.33 instead of 50
 
