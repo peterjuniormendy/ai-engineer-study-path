@@ -8,11 +8,11 @@ console.log(f()); // Promise { 1 }
 // If the next code depends on the result?
 // Suppose you want to use the actual result of f()
 
-async function f() {
+async function f1() {
   return 1;
 }
 
-f().then((result) => {
+f1().then((result) => {
   console.log("Result:", result);
 });
 
@@ -23,7 +23,7 @@ console.log("I need the result from f()"); // doesn't wait for the Promise. It e
 // If you need to use the result before continuing, you have two main approaches.
 
 // Approach 1: Use .then()
-f().then((result) => {
+f1().then((result) => {
   console.log("Result:", result);
   console.log("Now I can use the result");
 }); // Both statements inside the callback execute after the Promise resolves.
@@ -31,7 +31,7 @@ f().then((result) => {
 // Approach 2: Use await
 
 async function main() {
-  const result = await f();
+  const result = await f1();
 
   console.log(result);
   console.log("Now I can use the result");
@@ -47,7 +47,7 @@ main();
 
 // NOTE: Can’t use await in regular functions. If we try to use await in a non-async function, there would be a syntax error:
 
-// function f() {
+// function f1() {
 //   let promise = Promise.resolve(1);
 //   let result = await promise; // Syntax error
 // }
@@ -82,11 +82,11 @@ async function showAvatar() {
 // Error handling
 // If a promise resolves normally, then await promise returns the result. But in the case of a rejection, it throws the error, just as if there were a throw statement at that line.
 
-// async function f() {
+// async function f2() {
 //   await Promise.reject(new Error("Whoops!"));
 // }
 // …is the same as this:
-// async function f() {
+// async function f3() {
 //   throw new Error("Whoops!");
 // }
 
@@ -94,7 +94,7 @@ async function showAvatar() {
 
 // We can catch that error using try..catch, the same way as a regular throw
 
-// async function f() {
+// async function f4() {
 //   try {
 //     let response = await fetch("http://no-such-url");
 //   } catch (err) {
@@ -102,11 +102,11 @@ async function showAvatar() {
 //   }
 // }
 
-// f();
+// f4();
 
 // In the case of an error, the control jumps to the catch block. We can also wrap multiple lines:
 
-// async function f() {
+// async function f5() {
 //   try {
 //     let response = await fetch("/no-user-here");
 //     let user = await response.json();
@@ -116,7 +116,7 @@ async function showAvatar() {
 //   }
 // }
 
-// f();
+// f5();
 
 /*
 Summary
@@ -204,7 +204,7 @@ function demoGithubUser() {
       }
     });
 }
-demoGithubUser();
+// demoGithubUser();
 
 // Call async from non-async
 // We have a “regular” function called f. How can you call the async function wait() and use its result inside of f?
@@ -215,9 +215,11 @@ async function wait() {
   return 10;
 }
 
-function f() {
-  // ...what should you write here?
-  // we need to call async wait() and wait to get 10
-  // remember, we can't use "await"
-  wait().then((result) => console.log(result));
+{
+  function f() {
+    // ...what should you write here?
+    // we need to call async wait() and wait to get 10
+    // remember, we can't use "await"
+    wait().then((result) => console.log(result));
+  }
 }
