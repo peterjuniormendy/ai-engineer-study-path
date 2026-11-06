@@ -51,6 +51,8 @@ sayGreeting() // Error: Cannot access ‘sayGreeting’ before initialization.
 const sayGreeting  = () => {
     console.log('Hello, World')
 }
+
+NOTE: const variables are hoisted, meaning JavaScript knows the name exists, but they aren’t initialised until their line runs. The gap in between is called the temporal dead zone.
 ```
 
 -
