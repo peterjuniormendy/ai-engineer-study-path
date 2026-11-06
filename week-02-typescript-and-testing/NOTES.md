@@ -48,7 +48,7 @@ example:
 
 ```
 sayGreeting() // Error: sayGreeting is not decleared.
-sayGreeting  = () => {
+const sayGreeting  = () => {
     console.log('Hello, World')
 }
 
