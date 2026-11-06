@@ -78,3 +78,57 @@ async function showAvatar() {
 }
 
 // showAvatar();
+
+// Error handling
+// If a promise resolves normally, then await promise returns the result. But in the case of a rejection, it throws the error, just as if there were a throw statement at that line.
+
+// async function f() {
+//   await Promise.reject(new Error("Whoops!"));
+// }
+// …is the same as this:
+// async function f() {
+//   throw new Error("Whoops!");
+// }
+
+// In real situations, the promise may take some time before it rejects. In that case there will be a delay before await throws an error.
+
+// We can catch that error using try..catch, the same way as a regular throw
+
+// async function f() {
+//   try {
+//     let response = await fetch("http://no-such-url");
+//   } catch (err) {
+//     console.error(err); // TypeError: failed to fetch
+//   }
+// }
+
+// f();
+
+// In the case of an error, the control jumps to the catch block. We can also wrap multiple lines:
+
+// async function f() {
+//   try {
+//     let response = await fetch("/no-user-here");
+//     let user = await response.json();
+//   } catch (err) {
+//     // catches errors both in fetch and response.json
+//     console.error(err);
+//   }
+// }
+
+// f();
+
+/*
+Summary
+The async keyword before a function has two effects:
+
+Makes it always return a promise.
+Allows await to be used in it.
+The await keyword before a promise makes JavaScript wait until that promise settles, and then:
+
+If it’s an error, an exception is generated — same as if throw error were called at that very place.
+Otherwise, it returns the result.
+Together they provide a great framework to write asynchronous code that is easy to both read and write.
+
+With async/await we rarely need to write promise.then/catch, but we still shouldn’t forget that they are based on promises, because sometimes (e.g. in the outermost scope) we have to use these methods. Also Promise.all is nice when we are waiting for many tasks simultaneously.
+*/
