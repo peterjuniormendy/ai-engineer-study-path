@@ -47,14 +47,14 @@ Arrow functions behave differently. They are not hoisted
 example:
 
 ```
-sayGreeting() // Error: sayGreeting is not decleared.
+sayGreeting() // Error: Cannot access ‘sayGreeting’ before initialization.
 const sayGreeting  = () => {
     console.log('Hello, World')
 }
+```
 
 -
 
 ## What was hard
 
 -
-```
