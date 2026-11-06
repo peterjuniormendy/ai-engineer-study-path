@@ -29,6 +29,17 @@ area
 
 ## Questions for review
 
+What is hoisting in JavaScript?
+This is the process by which javaScript processed delerations before executing the code. Examole of this is function declaration.
+
+```
+greeting() // greeting is called before declaration and it works.
+
+function greeting() {
+console.log('Hello, World')
+}
+```
+
 -
 
 ## What was hard
