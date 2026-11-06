@@ -30,7 +30,7 @@ area
 ## Questions for review
 
 What is hoisting in JavaScript?
-This is the process by which javaScript processed delerations before executing the code. Examole of this is function declaration.
+This is the process by which JavaScript processed delarations before executing the code. Example of this is function declaration.
 
 ```
 greeting() // greeting is called before declaration and it works.
@@ -38,10 +38,23 @@ greeting() // greeting is called before declaration and it works.
 function greeting() {
 console.log('Hello, World')
 }
+
 ```
+
+NOTE: if two function declarations share a name, the last one wins everywhere, even above it in the file.
+Arrow functions behave differently. They are not hoisted
+
+example:
+
+```
+sayGreeting() // Error: sayGreeting is not decleared.
+sayGreeting  = () => {
+    console.log('Hello, World')
+}
 
 -
 
 ## What was hard
 
 -
+```
