@@ -132,3 +132,92 @@ Together they provide a great framework to write asynchronous code that is easy 
 
 With async/await we rarely need to write promise.then/catch, but we still shouldn’t forget that they are based on promises, because sometimes (e.g. in the outermost scope) we have to use these methods. Also Promise.all is nice when we are waiting for many tasks simultaneously.
 */
+
+// Tasks
+// 1. Rewrite using async/await
+
+async function loadJson(url) {
+  let response = await fetch(url);
+  if (response.status == 200) {
+    return response.json();
+  } else {
+    throw new Error(response.status);
+  }
+}
+
+loadJson("https://javascript.info/no-such-user.json").catch(console.error); // Error: 404
+
+async function loadJson1(url) {
+  try {
+    let response = await fetch(url);
+    if (response.status == 200) {
+      return response.json();
+    } else {
+      throw new Error(`Can't fetch data from ${url}`, response.status);
+    }
+  } catch (err) {
+    console.error(err.message, err.status);
+  }
+}
+
+loadJson1("https://javascript.info/no-such-user.json");
+
+// Rewrite "rethrow" with async/await
+
+class HttpError extends Error {
+  constructor(response) {
+    super(`${response.status} for ${response.url}`);
+    this.name = "HttpError";
+    this.response = response;
+  }
+}
+
+async function loadJson3(url) {
+  try {
+    let response = await fetch(url);
+    if (response.status == 200) {
+      return response.json();
+    } else {
+      throw new HttpError(response);
+    }
+  } catch (error) {
+    console.error(error);
+  }
+}
+
+// Ask for a user name until github returns a valid user
+// Ask for a user name until github returns a valid user
+function demoGithubUser() {
+  let name = "iliakan";
+
+  return loadJson(`https://api.github.com/users/${name}`)
+    .then((user) => {
+      console.log(`Full name: ${user.name}.`);
+      return user;
+    })
+    .catch((err) => {
+      if (err instanceof HttpError && err.response.status == 404) {
+        console.log("No such user, please reenter.");
+        return demoGithubUser();
+      } else {
+        throw err;
+      }
+    });
+}
+demoGithubUser();
+
+// Call async from non-async
+// We have a “regular” function called f. How can you call the async function wait() and use its result inside of f?
+
+async function wait() {
+  await new Promise((resolve) => setTimeout(resolve, 1000));
+
+  return 10;
+}
+
+function f() {
+  // ...what should you write here?
+  // we need to call async wait() and wait to get 10
+  // remember, we can't use "await"
+  wait().then((result) => console.log(result));
+}
