@@ -4,6 +4,8 @@
 
 _Explain this week's main concept in your own words, as if training a new starter._
 
+Type Predicate: A type predicate is only as trustworthy as the checks inside it.
+
 ## Sunday
 
 Question 1: what's the difference between your two objects?
