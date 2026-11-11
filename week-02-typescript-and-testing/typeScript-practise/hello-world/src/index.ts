@@ -319,3 +319,59 @@ function liveDangerously(x?: number | null) {
 liveDangerously(10); // 10
 // liveDangerously(null); // runtime error: Cannot read properties of null (reading 'toFixed')
 // liveDangerously(); // runtime error: Cannot read properties of undefined (reading 'toFixed')
+
+interface ColorCoding {
+  black: number;
+  brown: number;
+  red: number;
+  orange: number;
+  yellow: number;
+  green: number;
+  blue: number;
+  violet: number;
+  grey: number;
+  white: number;
+}
+
+const colorCoding: ColorCoding = {
+  black: 0,
+  brown: 1,
+  red: 2,
+  orange: 3,
+  yellow: 4,
+  green: 5,
+  blue: 6,
+  violet: 7,
+  grey: 8,
+  white: 9,
+};
+function decodedResistorValue(
+  color1: string,
+  color2: string,
+  color3: string,
+): string {
+  let value: number[] = [];
+  let result = "";
+  [color1, color2, color3].forEach((color) => {
+    if (color in colorCoding) {
+      let clr = color as keyof ColorCoding;
+      value.push(colorCoding[clr]);
+    }
+  });
+  let strArr = value.join("");
+  if (strArr === "000") {
+    result = strArr.slice(0, 1) + " ohms";
+  } else if (strArr.endsWith("0")) {
+    result = strArr.slice(0, 2) + " ohms";
+  } else if (strArr.endsWith("1")) {
+    result = strArr.slice(0, 2) + "0 ohms";
+  } else if (strArr.endsWith("2")) {
+    result = strArr.slice(0, 2) + "00 ohms";
+  } else {
+    result = strArr.slice(0, 2) + " kiloohms";
+  }
+
+  return result;
+}
+
+console.log(decodedResistorValue("black", "black", "black"));
