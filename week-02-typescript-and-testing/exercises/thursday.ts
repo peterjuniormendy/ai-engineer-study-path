@@ -12,6 +12,12 @@ export function twoFer(name: string): string {
   }
 }
 
+// Solution two
+
+export function hello(): string {
+  return "Hello, World!";
+}
+
 // Solution three
 interface ColorCoding {
   black: number;
